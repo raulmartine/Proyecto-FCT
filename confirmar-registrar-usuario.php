@@ -13,7 +13,7 @@
   }
   else
   {
-    if(strlen($telf) != 9)
+    if(strlen($telf) > 0 && strlen($telf) < 9 || strlen($telf) > 9)
     {
       echo "<p>El telefono debe ser de 9 digitos. Por favor vuelva a rellenar el formulario.</p>
       <p><button><a href=".'login.php'.">Volver a Registrarse</a></button></p>";
