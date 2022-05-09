@@ -72,11 +72,16 @@ el usuario y salte un mensaje diciendo que el teléfono debe tener 9 dígitos.
 En esta versión se ha implementado la función de permitir realizar cita previa
 guardándose en el registro de la cita el nombre del usuario registrado.
 
+## Ficheros añadidos
+
+``` code
+
+```
+
 ### Ficheros modificados
 
 ``` code
 /
   confirmar-registrar-cita-previa.php
   cita-previa.php
-  readme.md
 ```
