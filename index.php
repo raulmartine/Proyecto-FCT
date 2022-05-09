@@ -24,6 +24,7 @@
     else 
     {
   ?>
+    <li><a href="ver-citas.php">Ver Citas Previas</a></li>
     <li><a href="cerrar-sesion.php">Cerrar Sesión</a></li>
     <li><?php
         echo "Usuario: ".$_SESSION['username']." Rol: ".$_SESSION['rol'];

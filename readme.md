@@ -86,3 +86,26 @@ guardándose en el registro de la cita el nombre del usuario registrado.
   cita-previa.php
   readme.md
 ```
+
+
+# Version 4.0
+
+En esta versión se ha implementado una vista para que el usuario pueda ver las
+citas que ha creado. También se ha quitado un error que había en cita-previa.php
+al guardar el nombre del usuario en una variable.
+
+## Ficheros añadidos
+
+``` code
+/
+  ver-citas.php
+```
+
+### Ficheros modificados
+
+``` code
+/
+  index.php
+  cita-previa.php
+  readme.md
+```
