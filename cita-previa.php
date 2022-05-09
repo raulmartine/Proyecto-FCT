@@ -6,6 +6,10 @@
   <title>Cita Previa</title>
 </head>
 <body>
+  <?php
+  session_start();
+  $usuario = $_SESSION['username'];
+  ?>
   <header>
     <nav>
       <li><a href="index.php">Inicio</a></li>

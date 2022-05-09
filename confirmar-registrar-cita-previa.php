@@ -1,6 +1,7 @@
 <?php
+  session_start();
   include("conexion.php");
-	
+  $usuario = $_SESSION['username'];
   $mes = $_POST['mes'];
   $dia = $_POST['dia'];
   $hora = $_POST['hora'];
@@ -26,7 +27,7 @@
       {
         $conexion = mysqli_connect($host, $user, $password, $dbname);
 			  $sql = "INSERT INTO $tablaCitas VALUES ";
-			  $sql.= "('a', '".$fecha."', '".$servicio."', '".$peluquero."');";
+			  $sql.= "('".$usuario."', '".$fecha."', '".$servicio."', '".$peluquero."');";
         $insert = mysqli_query($conexion, $sql);
 			  if(!$insert)
         {
