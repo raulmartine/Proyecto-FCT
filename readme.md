@@ -69,10 +69,12 @@ el usuario y salte un mensaje diciendo que el teléfono debe tener 9 dígitos.
 
 # Version 3.0
 
+## Crear cita previa con el usuario registrado
+
 En esta versión se ha implementado la función de permitir realizar cita previa
 guardándose en el registro de la cita el nombre del usuario registrado.
 
-## Ficheros añadidos
+### Ficheros añadidos
 
 ``` code
 
@@ -90,11 +92,13 @@ guardándose en el registro de la cita el nombre del usuario registrado.
 
 # Version 4.0
 
+## Vista de las citas previas creadas
+
 En esta versión se ha implementado una vista para que el usuario pueda ver las
 citas que ha creado. También se ha quitado un error que había en cita-previa.php
 al guardar el nombre del usuario en una variable.
 
-## Ficheros añadidos
+### Ficheros añadidos
 
 ``` code
 /
