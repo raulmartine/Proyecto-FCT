@@ -84,4 +84,5 @@ guardándose en el registro de la cita el nombre del usuario registrado.
 /
   confirmar-registrar-cita-previa.php
   cita-previa.php
+  readme.md
 ```
