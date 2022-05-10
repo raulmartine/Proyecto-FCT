@@ -95,7 +95,9 @@ guardándose en el registro de la cita el nombre del usuario registrado.
 ## Vista de las citas previas creadas
 
 En esta versión se ha implementado una vista para que el usuario pueda ver las
-citas que ha creado. También se ha quitado un error que había en cita-previa.php
+citas que ha creado.
+
+También se ha quitado un error que había en cita-previa.php
 al guardar el nombre del usuario en una variable.
 
 ### Ficheros añadidos
@@ -111,5 +113,31 @@ al guardar el nombre del usuario en una variable.
 /
   index.php
   cita-previa.php
+  readme.md
+```
+
+# Version 5.0
+
+## Vista de las citas previas creadas 2ª Parte
+
+En esta versión se ha implementado una vista para que el peluquero pueda ver
+las citas que tiene.
+
+También se ha implementado que el peluquero pueda iniciar sesión en la
+aplicación.
+
+### Ficheros añadidos
+
+``` code
+
+```
+
+### Ficheros modificados
+
+``` code
+/
+  index.php
+  comprobar-login-usuario.php
+  ver-citas.php
   readme.md
 ```

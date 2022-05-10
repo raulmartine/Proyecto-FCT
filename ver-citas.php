@@ -20,7 +20,14 @@ if(!(empty($_SESSION['username']) && empty($_SESSION['passwd'])))
     }
     else
     {
-      $sql = "SELECT * FROM $tablaCitas WHERE username='". $_SESSION['username']."';";
+      if($_SESSION['rol'] == 'peluquero')
+      {
+        $sql = "SELECT * FROM $tablaCitas WHERE peluquero='". $_SESSION['username']."';";
+      }
+      else
+      {
+        $sql = "SELECT * FROM $tablaCitas WHERE username='". $_SESSION['username']."';";
+      }
       
       $resultado = mysqli_query($conexion, $sql);
       if(!$resultado)
@@ -41,10 +48,16 @@ if(!(empty($_SESSION['username']) && empty($_SESSION['passwd'])))
           $vectorfecha[0]." ".substr($vectorfecha[2],3,5);
               
           echo "<hr>";
-          echo "<p><b>Fecha:</b> " . $fechacorrecta .
-          " </p><p><b>Servicio:</b> " . $fila['servicio'] .
-          " </p><p><b>Peluquero:</b> " . $fila['peluquero'] . "</p>";
-        
+          if($_SESSION['rol'] == 'peluquero')
+          {
+            echo "<p><b>Usuario:</b> ". $fila['username']. "</p>";
+          }
+          echo "<p><b>Fecha:</b> " . $fechacorrecta. "</p>";
+          echo "<p><b>Servicio:</b> " . $fila['servicio'] . "</p>";
+          if($_SESSION['rol'] == 'registrado')
+          {
+            echo "<p><b>Peluquero:</b> " . $fila['peluquero'] . "</p>";
+          }
         echo "<hr>";
         }
       }

@@ -17,9 +17,16 @@
 		}
     else
     {
+			if ($_POST['username'] == 'peluquero1' || $_POST['username'] == 'peluquero2')
+			{
+				$sql = "SELECT * FROM $tablaPeluqueros WHERE (username='".$_POST['username']."'";
+				$sql.= "and password='".$_POST['passwd']."');";
+			}
+			else
+			{
 			$sql = "SELECT * FROM $tablaClientes WHERE (username='".$_POST['username']."'";
 			$sql.= "and password='".$_POST['passwd']."');";
-			
+			}
 			$resultado = mysqli_query($conector, $sql);
 			if(!$resultado)
       { // Si no pudo realizarse la consulta
@@ -37,7 +44,15 @@
         {
   				$_SESSION['username'] = $_POST['username'];
 					$_SESSION['passwd'] = $_POST['passwd'];
-					$_SESSION['rol'] = "registrado";
+					
+					if($_POST['username'] == 'peluquero1' || $_POST['username'] == 'peluquero2')
+					{
+						$_SESSION['rol'] = "peluquero";
+					}
+					else
+					{
+						$_SESSION['rol'] = "registrado";
+					}
           header('location: index.php');
 				}
       }	

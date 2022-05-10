@@ -6,6 +6,12 @@
   <title>Inicio</title>
   <?php
   session_start();
+  if(empty($_SESSION['username']) && empty($_SESSION['passwd']))
+  {
+    $_SESSION['username'] = "";
+    $_SESSION['passwd'] = "";
+    $_SESSION['rol'] = "";
+  }
   include("conexion.php")
   ?>
 </head>
@@ -13,8 +19,13 @@
   <header>
     <nav>
       <li><a href="index.php">Inicio</a></li>
-      <li><a href="cita-previa.php">Cita Previa</a></li>
   <?php
+    if (!($_SESSION['rol'] == 'peluquero'))
+    {
+  ?>
+      <li><a href='cita-previa.php'>Cita Previa</a></li>
+  <?php  
+    }
     if(empty($_SESSION['username']) && empty($_SESSION['passwd']))
     {
   ?>  
@@ -38,8 +49,15 @@
   <h1>Ángel Peluqueros</h1>
   <section>
     <p><img src="https://i.picsum.photos/id/1023/500/500.jpg?hmac=inqqWNZat87P7CSMN0LmAt-YDHVbMRIaY29cdstKtH0"></p>
+    <?php
+    if (!($_SESSION['rol'] == 'peluquero'))
+    {
+    ?>
     <button onclick="location.href='cita-previa.php'"><strong>Pide Cita Previa
     </strong></button>
+    <?php
+    }
+    ?>
   </section>
   <section>
     <h2>Quienes Somos</h2>
