@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if(!(empty($_SESSION['username']) && empty($_SESSION['passwd'])))
@@ -58,6 +57,10 @@ if(!(empty($_SESSION['username']) && empty($_SESSION['passwd'])))
           {
             echo "<p><b>Peluquero:</b> " . $fila['peluquero'] . "</p>";
           }
+          echo "<form method='POST' action='confirmar-anular-cita-previa.php'>
+          <input type='hidden' value='" . $fila['fecha'] . "' name='fecha'/>
+          <input type='submit' value='Anular Cita'/>
+          </form>";
         echo "<hr>";
         }
       }
@@ -67,7 +70,7 @@ if(!(empty($_SESSION['username']) && empty($_SESSION['passwd'])))
 } 
 else
 {
-  echo "<p><a href='login.php'>Inicie sesion primero</a></p>";
+  echo "<p><button><a href='login.php'>Inicie sesion primero</a></button></p>";
 }
-echo "<p><a href='index.php'>Ir al Inicio</a></p>"
+echo "<p><button><a href='index.php'>Ir al Inicio</a></button></p>"
 ?>

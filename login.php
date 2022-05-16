@@ -6,6 +6,9 @@
   <title>Registrar</title>
 </head>
 <body>
+  <?php
+  session_start();
+  ?>
   <header>
     <nav>
       <li><a href="index.php">Inicio</a></li>
@@ -29,6 +32,19 @@
       <p><label>Teléfono: </label><input type="number" name="telf"></p>
       <p>Si introduces tu número de teléfono, podremos contactar contigo en
         caso de cancelar la cita</p>
+      <?php
+        if($_SESSION['rol'] == 'admin')
+        {
+      ?>
+      <p><label>Rol: </label>
+      <select name="rol" id="rol">
+        <option value="registrado">Cliente</option>
+        <option value="peluquero">Peluquero</option>
+      </select>
+      </p>
+      <?php
+        }
+      ?>
       <p><input type="submit" value="Registrar"></p>
     </form>
   </section>

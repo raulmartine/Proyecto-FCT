@@ -141,3 +141,37 @@ aplicación.
   ver-citas.php
   readme.md
 ```
+
+# Version 6.0
+
+## Anular cita previa y usuario administrador crea usuarios
+
+En esta versión se ha implementado la función de anular citas ya generadas.
+
+También se ha cambiado la estructura de la base de datos, fusionando la tabla
+clientes con la tabla peluqueros formando una nueva tabla llamada usuarios.
+
+Y se ha incoporado un usuario con rol de administrador que permite crear
+usuarios cliente o peluquero.
+
+### Ficheros añadidos
+
+``` code
+/
+  confirmar-anular-cita-previa.php
+```
+
+### Ficheros modificados
+
+``` code
+/
+  sql/
+    database.sql
+  comprobar-login-usuario.php
+  conexion.php
+  confirmar-registrar-usuario.php
+  index.php
+  login.php
+  ver-citas.php
+  readme.md
+```

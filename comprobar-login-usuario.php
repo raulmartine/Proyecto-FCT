@@ -16,17 +16,9 @@
 			echo "ERROR: Imposible seleccionar la base de datos.";
 		}
     else
-    {
-			if ($_POST['username'] == 'peluquero1' || $_POST['username'] == 'peluquero2')
-			{
-				$sql = "SELECT * FROM $tablaPeluqueros WHERE (username='".$_POST['username']."'";
-				$sql.= "and password='".$_POST['passwd']."');";
-			}
-			else
-			{
-			$sql = "SELECT * FROM $tablaClientes WHERE (username='".$_POST['username']."'";
+    {	
+			$sql = "SELECT * FROM $tablaUsuarios WHERE (username='".$_POST['username']."'";
 			$sql.= "and password='".$_POST['passwd']."');";
-			}
 			$resultado = mysqli_query($conector, $sql);
 			if(!$resultado)
       { // Si no pudo realizarse la consulta
@@ -44,14 +36,24 @@
         {
   				$_SESSION['username'] = $_POST['username'];
 					$_SESSION['passwd'] = $_POST['passwd'];
-					
-					if($_POST['username'] == 'peluquero1' || $_POST['username'] == 'peluquero2')
-					{
-						$_SESSION['rol'] = "peluquero";
-					}
-					else
-					{
-						$_SESSION['rol'] = "registrado";
+					while($fila=mysqli_fetch_array($resultado))
+        	{
+						if($fila['rol'] == 'admin')
+						{
+							$_SESSION['rol'] = "admin";
+						} 
+						else if($fila['rol'] == 'peluquero')
+						{
+							$_SESSION['rol'] = "peluquero";
+						}
+						else if ($fila['rol'] == 'registrado')
+						{
+							$_SESSION['rol'] = "registrado";
+						}
+						else
+						{
+							$_SESSION['rol'] = "anonimo";
+						}
 					}
           header('location: index.php');
 				}

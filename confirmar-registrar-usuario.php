@@ -1,10 +1,17 @@
 <?php
+  session_start();
   include("conexion.php");
 	
   $username = $_POST['username'];
   $passwd = $_POST['passwd'];
   $telf = $_POST['telf'];
-  $rol = "registrado";
+  if($_POST['rol'] !=null)
+  {
+    $rol = $_POST['rol'];
+  }  
+  else{
+    $rol = "registrado";
+  }
   
   if ($username == "" || $passwd == "")
   {
@@ -35,7 +42,7 @@
         else
         {
           $conexion = mysqli_connect($host, $user, $password, $dbname);
-			    $sql = "INSERT INTO $tablaClientes VALUES ";
+			    $sql = "INSERT INTO $tablaUsuarios VALUES ";
 			    $sql.= "('".$username."', '".$passwd."', '".$telf."', '".$rol."');";
           $insert = mysqli_query($conexion, $sql);
 			    if(!$insert)

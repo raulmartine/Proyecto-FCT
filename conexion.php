@@ -3,9 +3,8 @@
   $user = "root";
   $password = "";
   $dbname = "angelpeluqueros";
-  $tablaClientes = "clientes";
+  $tablaUsuarios = "usuarios";
   $tablaCitas = "citas";
-  $tablaPeluqueros = "peluqueros";
   $tablaServicios = "servicios";
 
   $conector=mysqli_connect($host, $user, $password, $dbname);
