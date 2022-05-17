@@ -175,3 +175,38 @@ usuarios cliente o peluquero.
   ver-citas.php
   readme.md
 ```
+
+# Version 6.1
+
+## Generalizar cabecera y pie de página
+
+Se han añadido dos archivos nuevos para reutilizar código.
+
+Uno consta de los datos del menú de la aplicación y el otro consta de los datos
+de Contacto.
+
+También se han corregido un bug al crear un usuario que marcaba undefined el
+rol pero creaba el usuario si no era un usuario administrador.
+
+### Ficheros añadidos
+
+``` code
+/
+  menu.php
+  footer.php
+```
+
+### Ficheros modificados
+
+``` code
+/
+  cita-previa.php
+  comprobar-login-usuario.php
+  confirmar-anular-cita-previa.php
+  confirmar-registrar-cita-previa.php
+  confirmar-registrar-usuario.php
+  index.php
+  login.php
+  ver-citas.php
+  readme.md
+```

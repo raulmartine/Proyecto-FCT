@@ -4,54 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio</title>
-  <?php
-  session_start();
-  if(empty($_SESSION['username']) && empty($_SESSION['passwd']))
-  {
-    $_SESSION['username'] = "";
-    $_SESSION['passwd'] = "";
-    $_SESSION['rol'] = "";
-  }
-  include("conexion.php")
-  ?>
 </head>
 <body>
-  <header>
-    <nav>
-      <li><a href="index.php">Inicio</a></li>
   <?php
-    if (!($_SESSION['rol'] == 'peluquero') || !($_SESSION['rol'] == 'admin'))
-    {
-  ?>
-      <li><a href='cita-previa.php'>Cita Previa</a></li>
-  <?php  
-    }
+    include('menu.php');
     if(empty($_SESSION['username']) && empty($_SESSION['passwd']))
     {
-  ?>  
-    <li><a href="login.php">Iniciar Sesión</a></li>
-  <?php
-    }
-    else
-    {
-  ?>
-    <li><a href="ver-citas.php">Ver Citas Previas</a></li>
-    <li><a href="cerrar-sesion.php">Cerrar Sesión</a></li>
-  <?php
-      if($_SESSION['rol'] == 'admin')
-      {
-  ?>
-    <li><a href="login.php">Registrar Usuarios</a></li>
-  <?php
-      }
-  ?>
-    <li><?php
-        echo "Usuario: ".$_SESSION['username']." Rol: ".$_SESSION['rol'];
+      $_SESSION['username'] = "";
+      $_SESSION['passwd'] = "";
+      $_SESSION['rol'] = "";
     }
   ?>
-    </li>
-    </nav>
-  </header>
   <h1>Ángel Peluqueros</h1>
   <section>
     <p><img src="https://i.picsum.photos/id/1023/500/500.jpg?hmac=inqqWNZat87P7CSMN0LmAt-YDHVbMRIaY29cdstKtH0"></p>
@@ -83,21 +46,8 @@
         width="400" height="300" style="border:0;" allowfullscreen="" 
         loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </section>
-  <footer>
-    <h2>Contactos</h2>
-      <h3>Ángel Peluqueros</h3>
-      <p>Dirección: Carrer d'Alcàsser, 48, 46014 Valencia, España</p>
-      <p>+34 657 11 92 14</p>
-      <!-- <a href="http://www.facebook.com//"> www.facebook.com//</a><br> -->
-      <p><a href="https://www.instagram.com/angelpeluquerosoficial/"> @angelpeluquerosoficial </a></p>
-      <!-- <a href="mailto:@gmail.com">@gmail.com</a><br> -->
-    
-    <!-- <p><a href="https://angelpeluqueros.com/privacidad/">Política de Privacidad y Aviso Legal Web</a></p></div> -->
- 
-    <h3>Horario de funcionamiento</h3>
-    <p>Martes a Viernes: 9:30 - 19:30</p>
-    <p>Sábado: 9 - 14</p>
-    <p>Lunes y Domingo - Cerrado</p>
-  </footer>
+  <?php
+    include('footer.php');
+  ?>
 </body>
 </html>

@@ -1,5 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="uft-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar</title>
+</head>
+<body>
 <?php
-session_start();
+  include('menu.php');
+?>
+<?php
 
 if(!(empty($_SESSION['username']) && empty($_SESSION['passwd'])))
 {  
@@ -66,11 +76,16 @@ if(!(empty($_SESSION['username']) && empty($_SESSION['passwd'])))
       }
     }
   mysqli_close($conexion);    
-  }    
+  }
+  echo "<p><button><a href='index.php'>Ir al Inicio</a></button></p>";   
 } 
 else
 {
   echo "<p><button><a href='login.php'>Inicie sesion primero</a></button></p>";
 }
-echo "<p><button><a href='index.php'>Ir al Inicio</a></button></p>"
 ?>
+<?php
+  include('footer.php');
+?>
+</body>
+</html>

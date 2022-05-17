@@ -1,5 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cita Previa</title>
+</head>
+<body>
 <?php
-  session_start();
+  include('menu.php');
+?>
+<?php
   include("conexion.php");
   $usuario = $_SESSION['username'];
   $mes = $_POST['mes'];
@@ -11,6 +21,8 @@
   $anoActual = date("Y");
   $fecha = $anoActual.'-'.$mes.'-'.$dia.' '.$hora.':'.$minuto.':00';
 
+  if(!(empty($_SESSION['username'])))
+  {
     $conector = mysqli_connect($host,$user,$password);
 	  if (! $conector)
     {
@@ -40,5 +52,15 @@
         }
       }
     }
-    echo "<p><button><a href=".'index.php'.">Volver a Inicio</a></button></p>";
+  }
+  else
+  {
+    echo "<p>No puedes crear una cita sin haber inicado sesión.</p>
+    <p><button><a href=".'login.php'.">Inicia sesión</a></button></p>";
+  }
 ?>
+<?php
+  include('footer.php');
+?>
+</body>
+</html>

@@ -7,15 +7,8 @@
 </head>
 <body>
   <?php
-  session_start();
+    include('menu.php');
   ?>
-  <header>
-    <nav>
-      <li><a href="index.php">Inicio</a></li>
-      <li><a href="cita-previa.php">Cita Previa</a></li>
-      <li><a href="login.php">Iniciar Sesión</a></li>
-    </nav>
-  </header>
   <section>
     <h2>Iniciar Sesión</h2>
     <form method="POST" action="comprobar-login-usuario.php">
@@ -48,5 +41,8 @@
       <p><input type="submit" value="Registrar"></p>
     </form>
   </section>
+  <?php
+    include('footer.php');
+  ?>
 </body>
 </html>

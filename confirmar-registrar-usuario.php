@@ -1,15 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cita Previa</title>
+</head>
+<body>
 <?php
-  session_start();
+  include('menu.php');
+?>
+<?php
   include("conexion.php");
 	
   $username = $_POST['username'];
   $passwd = $_POST['passwd'];
   $telf = $_POST['telf'];
-  if($_POST['rol'] !=null)
+  if($_SESSION['rol'] == 'admin')
+  {    
+    if($_POST['rol'] !=null)
+    {
+      $rol = $_POST['rol'];
+    }  
+  }
+  else
   {
-    $rol = $_POST['rol'];
-  }  
-  else{
     $rol = "registrado";
   }
   
@@ -60,3 +74,8 @@
     }
   }
 ?>
+<?php
+  include('footer.php');
+?>
+</body>
+</html>

@@ -1,5 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cita Previa</title>
+</head>
+<body>
 <?php
-session_start();
+  include('menu.php');
+?>
+<?php
 
 if (!(empty($_SESSION['username']) || empty($_SESSION['passwd']) || empty($_SESSION['rol'])
 	|| empty($_POST['fecha'])))
@@ -52,3 +62,8 @@ else
   <p><button><a href='login.php'>Inicia sesión</a></button></p>";
 }
 ?>
+<?php
+  include('footer.php');
+?>
+</body>
+</html>
