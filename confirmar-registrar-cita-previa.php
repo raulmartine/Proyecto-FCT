@@ -12,14 +12,11 @@
 <?php
   include("conexion.php");
   $usuario = $_SESSION['username'];
-  $mes = $_POST['mes'];
-  $dia = $_POST['dia'];
+  $fecha = $_POST['fecha'];
   $hora = $_POST['hora'];
-  $minuto = $_POST['minuto'];
+  $fechaCorrecta = $fecha . " ". $hora .":00";
   $servicio = $_POST['servicio'];
   $peluquero = $_POST['peluquero'];
-  $anoActual = date("Y");
-  $fecha = $anoActual.'-'.$mes.'-'.$dia.' '.$hora.':'.$minuto.':00';
 
   if(!(empty($_SESSION['username'])))
   {
@@ -38,17 +35,27 @@
       else
       {
         $conexion = mysqli_connect($host, $user, $password, $dbname);
-			  $sql = "INSERT INTO $tablaCitas VALUES ";
-			  $sql.= "('".$usuario."', '".$fecha."', '".$servicio."', '".$peluquero."');";
-        $insert = mysqli_query($conexion, $sql);
-			  if(!$insert)
+
+        $sqlSelect = "SELECT * FROM $tablaCitas WHERE peluquero='".$peluquero."' AND fecha='".$fechaCorrecta."';";
+        $resultado = mysqli_query($conexion, $sqlSelect);
+        $fila = mysqli_fetch_array($resultado);
+        if(empty($fila['fecha']))
         {
-				  echo "<p>No se ha podido crear la cita previa.</p>";
-			  }
-			  else
-        {
-          echo "<p>Se ha creado la cita previa.</p>";
-          mysqli_close($conector);
+			    $sqlInsert = "INSERT INTO $tablaCitas VALUES ";
+			    $sqlInsert.= "('".$usuario."', '".$fechaCorrecta."', '".$servicio."', '".$peluquero."');";
+          $insert = mysqli_query($conexion, $sqlInsert);
+			    if(!$insert)
+          {
+				    echo "<p>No se ha podido crear la cita previa.</p>";
+			    }
+			    else
+          {
+            echo "<p>Se ha creado la cita previa.</p>";
+            mysqli_close($conector);
+          }
+        }
+        else{
+          echo "<p>ERROR: La cita previa con hora: ".$fechaCorrecta." y peluquero: ".$peluquero." ya están escogidas.</p>";
         }
       }
     }

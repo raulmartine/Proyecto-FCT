@@ -210,3 +210,35 @@ rol pero creaba el usuario si no era un usuario administrador.
   ver-citas.php
   readme.md
 ```
+
+# Version 6.2
+
+## No haga citas de un peluquero a la misma hora y no haga citas pasadas
+
+Se ha implementado que al crear citas previa, no se pueda crear más de una cita
+a la misma hora a un mismo peluquero.
+
+Para ello se ha cambiado la forma de rellenar la cita previa.
+
+Se podrá realizar cita previa cada 30 minutos para que la función implementada
+sea más sencilla.
+
+También se ha implementado que no se pueda realizar citas pasadas.
+
+### Ficheros añadidos
+
+``` code
+/
+  
+```
+
+### Ficheros modificados
+
+``` code
+/
+  sql/
+    database.sql
+  cita-previa.php
+  confirmar-registrar-cita-previa.php
+  readme.md
+```

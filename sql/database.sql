@@ -19,7 +19,7 @@ CREATE TABLE citas (
   fecha DATETIME NOT NULL,
   servicio CHAR(9) NOT NULL,
   peluquero VARCHAR(20) NOT NULL,
-PRIMARY KEY(username, fecha),
+PRIMARY KEY(username, fecha, servicio, peluquero),
 
 FOREIGN KEY (peluquero) REFERENCES usuarios(username) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (servicio) REFERENCES servicios(codigo) ON DELETE CASCADE ON UPDATE CASCADE);
@@ -31,5 +31,5 @@ INSERT INTO usuarios VALUES('usuario1','usuario1', '123456789','registrado'),
                           ('peluquero2','peluquero2', '159325353', 'peluquero'),
                           ('admin','admin', '999999999','admin');
 
-INSERT INTO servicios VALUES ('CDPH','Corte de Pelo Hombre'),
-                            ('CDPM', 'Corte de Pelo Mujer');
+INSERT INTO servicios VALUES ('CDPH','Corte de Pelo Hombre', 30),
+                            ('CDPM', 'Corte de Pelo Mujer', 30);
