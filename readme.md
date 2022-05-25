@@ -268,3 +268,29 @@ También se ha quitado un error de valores del fichero .sql.
   ver-citas.php
   readme.md
 ```
+
+# Version 6.4
+
+## Separar login y registrar en ficheros distintos
+
+Se ha separado las funciones de login y registrar para facilitar la experiencia
+al usuario.
+
+También se ha implementado que al registrarse inicie sesión de manera
+automática y le redirija a la página principal.
+
+### Ficheros añadidos
+
+``` code
+/
+  registrar.php
+```
+
+### Ficheros modificados
+
+``` code
+/
+  confirmar-registrar-usuario.php
+  login.php
+  readme.md
+```

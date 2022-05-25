@@ -18,28 +18,10 @@
     </form>
   </section>
   <section>
-    <h2>Registrar</h2>
-    <form method="POST" action="confirmar-registrar-usuario.php">
-      <p><label>Nombre de Usuario*: </label><input type="text" name="username"></p>
-      <p><label>Contraseña*: </label><input type="password" name="passwd"></p>
-      <p><label>Teléfono: </label><input type="number" name="telf"></p>
-      <p>Si introduces tu número de teléfono, podremos contactar contigo en
-        caso de cancelar la cita</p>
-      <?php
-        if($_SESSION['rol'] == 'admin')
-        {
-      ?>
-      <p><label>Rol: </label>
-      <select name="rol" id="rol">
-        <option value="registrado">Cliente</option>
-        <option value="peluquero">Peluquero</option>
-      </select>
-      </p>
-      <?php
-        }
-      ?>
-      <p><input type="submit" value="Registrar"></p>
-    </form>
+  <p>Si no tiene una cuenta, regístrese.</p>
+  <form method="POST" action="registrar.php">
+    <button type="submit">Registrarse</button>
+  </form>
   </section>
   <?php
     include('footer.php');

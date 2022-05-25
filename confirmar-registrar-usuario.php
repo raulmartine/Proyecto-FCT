@@ -66,7 +66,11 @@
 			    else
           {
             echo "<p>Se ha creado el usuario.</p>";
+            $_SESSION['username'] = $_POST['username'];
+					  $_SESSION['passwd'] = $_POST['passwd'];
+            $_SESSION['rol'] = $rol;
             mysqli_close($conector);
+            header('Location: index.php');
           }
         }
       }
