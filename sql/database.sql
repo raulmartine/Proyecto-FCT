@@ -31,5 +31,5 @@ INSERT INTO usuarios VALUES('usuario1','usuario1', '123456789','registrado'),
                           ('peluquero2','peluquero2', '159325353', 'peluquero'),
                           ('admin','admin', '999999999','admin');
 
-INSERT INTO servicios VALUES ('CDPH','Corte de Pelo Hombre', 30),
-                            ('CDPM', 'Corte de Pelo Mujer', 30);
+INSERT INTO servicios VALUES ('CDPH','Corte de Pelo Hombre'),
+                            ('CDPM', 'Corte de Pelo Mujer');

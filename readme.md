@@ -242,3 +242,29 @@ También se ha implementado que no se pueda realizar citas pasadas.
   confirmar-registrar-cita-previa.php
   readme.md
 ```
+
+# Version 6.3
+
+## Visor de citas con menú de dia anterior, posterior
+
+Se ha implementado que al ver citas previa, visualice las citas del día actual,
+y aparezca un menú que permite cambiar a día anterior o día posterior.
+
+También se ha quitado un error de valores del fichero .sql.
+
+### Ficheros añadidos
+
+``` code
+/
+  
+```
+
+### Ficheros modificados
+
+``` code
+/
+  sql/
+    database.sql
+  ver-citas.php
+  readme.md
+```
