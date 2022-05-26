@@ -7,8 +7,10 @@
 </head>
 <body>
   <?php    
-    include('menu.php');
+    include('common/menu.php');
     $fecha = date("Y-m-d");
+    if(!(empty($_SESSION['username']) || $_SESSION['rol']=='peluquero' || $_SESSION['rol']=='admin'))
+    {
   ?>
   <h1>Cita Previa</h1>
   <h2>Rellene los párametros para realizar la cita previa</h2>
@@ -39,7 +41,26 @@
     <p><input type="submit" value="Confirmar Cita"></p>
   </form>
   <?php
-    include('footer.php');
+    }
+    else
+    {
+      if($_SESSION['rol']=='peluquero')
+      {
+        echo "<p>Los peluqueros no pueden realizar citas previa.</p>
+              <button><a href='index.php'>Ir al Inicio</a></button>";
+      }
+      else if($_SESSION['rol']=='admin')
+      {
+        echo "<p>Los administradores no pueden realizar citas previa.</p>
+              <button><a href='index.php'>Ir al Inicio</a></button>";
+      }
+      else
+      {
+        echo "<p>Debes iniciar sesión primero.</p>
+            <button><a href='login.php'>Inicie sesión</a></button>";
+      }
+    }
+    include('common/footer.php');
   ?>
 </body>
 </html>

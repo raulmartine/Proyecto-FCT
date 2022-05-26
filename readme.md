@@ -294,3 +294,42 @@ automática y le redirija a la página principal.
   login.php
   readme.md
 ```
+
+# Version 6.5
+
+## Cambiar los mensajes de texto y carpeta de ficheros comunes
+
+Se han cambiado los mensajes de error para que expliquen de forma detallada
+porque da error.
+
+También se ha cambiado conexion.php, footer.php menu.php a una carpeta llamada
+common ya que son ficheros comunes que se usa en todo el proyecto.
+
+Y se ha podido incorporar que en ver-citas.php, muestre un texto si no hay
+citas creadas en la fecha seleccionada.
+
+### Ficheros añadidos
+
+``` code
+/
+  /common
+    conexion.php
+    footer.php
+    menu.php
+```
+
+### Ficheros modificados
+
+``` code
+/
+  cita-previa.php
+  comprobar-login-usuario.php
+  confirmar-anular-cita-previa.php
+  confirmar-registrar-cita-previa.php
+  confirmar-registrar-usuario.php
+  index.php
+  login.php
+  registrar.php
+  ver-citas.php
+  readme.md
+```

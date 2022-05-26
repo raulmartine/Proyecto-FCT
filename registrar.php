@@ -7,7 +7,7 @@
 </head>
 <body>
   <?php
-    include('menu.php');
+    include('common/menu.php');
   ?>
   <section>
     <h2>Registrar</h2>
@@ -34,7 +34,7 @@
     </form>
   </section>
   <?php
-    include('footer.php');
+    include('common/footer.php');
   ?>
 </body>
 </html>

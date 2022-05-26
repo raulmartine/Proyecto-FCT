@@ -7,7 +7,7 @@
 </head>
 <body>
   <?php
-    include('menu.php');
+    include('common/menu.php');
     if(empty($_SESSION['username']) && empty($_SESSION['passwd']))
     {
       $_SESSION['username'] = "";
@@ -30,15 +30,16 @@
   </section>
   <section>
     <h2>Quienes Somos</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur
-      id urna ut consequat. Morbi ut faucibus orci. Sed sapien eros, elementum
-      ornare elit vel, auctor tempor nibh.</p>
+    <p>Somos una empresa de peluqueria familiar que se encarga de ofrecer el
+      mejor servicio al cliente usando los mejores productos del mercado.</p>
   </section>
   <section>
     <h2>Que Ofrecemos</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur
-      id urna ut consequat. Morbi ut faucibus orci. Sed sapien eros, elementum
-      ornare elit vel, auctor tempor nibh.</p>
+    <p>Ofrecemos los siguientes permisos:</p>
+    <ul>
+      <li>Corte de Pelo Hombre</li>
+      <li>Corte de Pelo Mujer</li>
+    </ul>
   </section>
   <section>
     <h2>Ubicación</h2>
@@ -47,7 +48,7 @@
         loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </section>
   <?php
-    include('footer.php');
+    include('common/footer.php');
   ?>
 </body>
 </html>

@@ -7,30 +7,32 @@
 </head>
 <body>
 <?php
-  include('menu.php');
+  include('common/menu.php');
 ?>
 <?php
-  include("conexion.php");
-  $usuario = $_SESSION['username'];
-  $fecha = $_POST['fecha'];
-  $hora = $_POST['hora'];
-  $fechaCorrecta = $fecha . " ". $hora .":00";
-  $servicio = $_POST['servicio'];
-  $peluquero = $_POST['peluquero'];
-
-  if(!(empty($_SESSION['username'])))
+  include("common/conexion.php");
+if(!(empty($_SESSION['username']) && empty($_SESSION['passwd']) && empty($_SESSION['rol'])))
+{
+  if(!empty($_POST['fecha']))
   {
+    $usuario = $_SESSION['username'];
+    $fecha = $_POST['fecha'];
+    $hora = $_POST['hora'];
+    $fechaCorrecta = $fecha . " ". $hora .":00";
+    $servicio = $_POST['servicio'];
+    $peluquero = $_POST['peluquero'];
+
     $conector = mysqli_connect($host,$user,$password);
 	  if (! $conector)
-    {
-  		echo "<p>No se ha podido establecer conexion con el servidor.</p>";
+    { 
+  		echo "<p>ERROR: No se ha podido establecer conexion con el servidor.</p>";
     }
     else
     {
 		  $resultado = mysqli_select_db($conector, $dbname);
 		  if (! $resultado)
       {
-			  echo "<p>No se ha podido seleccionar la base de datos.</p>";
+  			echo "<p>ERROR: No se ha podido seleccionar la base de datos.</p>";
 		  }
       else
       {
@@ -41,12 +43,12 @@
         $fila = mysqli_fetch_array($resultado);
         if(empty($fila['fecha']))
         {
-			    $sqlInsert = "INSERT INTO $tablaCitas VALUES ";
+  			  $sqlInsert = "INSERT INTO $tablaCitas VALUES ";
 			    $sqlInsert.= "('".$usuario."', '".$fechaCorrecta."', '".$servicio."', '".$peluquero."');";
           $insert = mysqli_query($conexion, $sqlInsert);
 			    if(!$insert)
           {
-				    echo "<p>No se ha podido crear la cita previa.</p>";
+  				  echo "<p>ERROR: No se ha podido crear la cita previa.</p>";
 			    }
 			    else
           {
@@ -54,20 +56,33 @@
             mysqli_close($conector);
           }
         }
-        else{
+        else
+        {
           echo "<p>ERROR: La cita previa con hora: ".$fechaCorrecta." y peluquero: ".$peluquero." ya están escogidas.</p>";
         }
       }
     }
   }
+  else if($_SESSION['rol']=='peluquero' || $_SESSION['rol']=='admin')
+  {
+      echo "<p>Los peluqueros o administradores no pueden crear citas previa.</p>
+            <p><button><a href='index.php'>Ir al Inicio</a></button></p>";
+  }
   else
   {
-    echo "<p>No puedes crear una cita sin haber inicado sesión.</p>
-    <p><button><a href=".'login.php'.">Inicia sesión</a></button></p>";
+    echo "<p>Los parámetros para crear una cita no están rellenados.</p>
+          <p>Crea una cita previa.</p>
+          <p><button><a href='cita-previa.php'>Crear Cita Previa</a></button></p>";
   }
+}
+else
+{
+  echo "<p>Debes inicar sesión para crear sesión.</p>
+    <p><button><a href='login.php'>Inicia sesión</a></button></p>";
+}
 ?>
 <?php
-  include('footer.php');
+  include('common/footer.php');
 ?>
 </body>
 </html>

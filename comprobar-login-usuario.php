@@ -7,23 +7,23 @@
 </head>
 <body>
 <?php
-  include('menu.php');
+  include('common/menu.php');
 ?>
 <?php
-	
-	include("conexion.php");
-	
+if(!(empty($_POST['username']) && empty($_POST['passwd'])))
+{
+	include("common/conexion.php");
 	$conector = mysqli_connect($host,$user,$password);
 	if (! $conector)
   {
-		echo "ERROR: Imposible establecer conexion con el servidor.";
+		echo "<p>ERROR: No se ha podido establecer conexión con el servidor.</p>";
 	}
   else
   {
 		$resultado = mysqli_select_db($conector, $dbname);
 		if (! $resultado)
     {
-			echo "ERROR: Imposible seleccionar la base de datos.";
+			echo "<p>ERROR: No se ha podido seleccionar la base de datos.</p>";
 		}
     else
     {	
@@ -32,15 +32,15 @@
 			$resultado = mysqli_query($conector, $sql);
 			if(!$resultado)
       { // Si no pudo realizarse la consulta
-				echo "ERROR: Imposible ejecutar la consulta.";
+				echo "<p>ERROR: No se ha podido ejecutar la consulta.</p>";
 			}
 			else
       {
 				$numeroregistros = mysqli_num_rows($resultado);
 				if($numeroregistros<1)
         { // Si no se encontró un usuario con esa clave.
-					echo "ERROR: Usuario no registrado o clave incorrecta.";
-					echo "<a href='login.php'>Volver a intentarlo</a>";
+					echo "<p>ERROR: No existe un usuario con ese username o clave incorrecta.</p>
+					<button><a href='login.php'>Volver a intentarlo</a></button>";
 				}
 				else
         {
@@ -71,9 +71,20 @@
 		}
 		mysqli_close($conector);
 	}
+}
+else if (!(empty($_SESSION['username']) && empty($_SESSION['passwd']) && empty($_SESSION['rol'])))
+{
+	echo "<p>Ya has iniciado sesión con un usuario</p>
+				<button><a href='index.php'>Ir al Inicio</a></button>";
+}
+else
+{
+	echo "<p>Los datos del formulario iniciar sesión están vacíos</p>
+				<button><a href='login.php'>Volver a Iniciar Sesión</a></button>";
+}
 ?>
 <?php
-  include('footer.php');
+  include('common/footer.php');
 ?>
 </body>
 </html>

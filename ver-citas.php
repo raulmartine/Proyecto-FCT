@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-  include('menu.php');
+  include('common/menu.php');
   $hoy = date("Y-m-d");
   if(empty($_POST['fechaActualizar']))
   {
@@ -22,14 +22,13 @@
     $usuario = $_SESSION['username'];
     $passwd = $_SESSION['passwd'];
     $rol = $_SESSION['rol'];
-
   }
   ?>
 <?php
 
 if(!(empty($usuario) && empty($passwd)))
 {  
-  include("conexion.php");
+  include("common/conexion.php");
     
   $conexion=mysqli_connect($host,$user,$password);
   if (! $conexion)
@@ -49,11 +48,15 @@ if(!(empty($usuario) && empty($passwd)))
       {
         $sql = "SELECT * FROM $tablaCitas WHERE peluquero='$usuario' AND fecha LIKE '$fecha%' ORDER BY fecha;";
       }
-      else
+      else if ($rol == 'registrado')
       {
         $sql = "SELECT * FROM $tablaCitas WHERE username='$usuario' AND fecha LIKE '$fecha%' ORDER BY fecha;";
       }
-      
+      else
+      {
+        $sql = "SELECT * FROM $tablaCitas WHERE fecha LIKE '$fecha%' ORDER BY fecha;";
+      }
+
       $resultadoSelect = mysqli_query($conexion, $sql);
       if(!$resultadoSelect)
       {
@@ -79,40 +82,42 @@ if(!(empty($usuario) && empty($passwd)))
         <button type='submit'>Día Posterior</button>
         </form>";
 
-        echo "<p>Se están visualizando las citas del día: ".$fecha."</p>";
+        echo "<p>Se están visualizando las citas previa del día: ".$fecha."</p>";
+        
+        $sqlComprobarFila = $sql;
+        $resultadoComprobarFila = mysqli_query($conexion, $sqlComprobarFila);
+        $filas=mysqli_num_rows($resultadoComprobarFila);
+        if($filas==0)
+        {
+          echo "<p>No hay citas previas en este día.</p>";
+        }
 
         while($fila=mysqli_fetch_array($resultadoSelect))
         { 
-          //Si no hay registros (No funciona todavía)
-          if($fila==array(4))
+          
+          // La fecha de esta $fila['fecha'] en formato año-mes-día (mal).
+          // Dentro de la fecha, separamos el año, mes y día (por el guión).
+          $vectorfecha=explode("-",$fila['fecha']);
+          // Reconstruimos la cadena: "día-mes-año hora:minutos:segundos"
+          $fechacorrecta=substr($vectorfecha[2],0,2)."-".$vectorfecha[1]."-".
+          $vectorfecha[0]." ".substr($vectorfecha[2],3,5);
+          echo "<hr>";
+          if($rol == 'peluquero' || $rol == 'admin')
           {
-            echo "<p>No hay citas previas en este día.</p>";
+            echo "<p><b>Usuario:</b> ". $fila['username']. "</p>";
           }
-          else
+          echo "<p><b>Fecha:</b> " . $fechacorrecta. "</p>";
+          echo "<p><b>Servicio:</b> " . $fila['servicio'] . "</p>";
+          if($rol == 'registrado' || $rol == 'admin')
           {
-            // La fecha de esta $fila['fecha'] en formato año-mes-día (mal).
-            // Dentro de la fecha, separamos el año, mes y día (por el guión).
-            $vectorfecha=explode("-",$fila['fecha']);
-            // Reconstruimos la cadena: "día-mes-año hora:minutos:segundos"
-            $fechacorrecta=substr($vectorfecha[2],0,2)."-".$vectorfecha[1]."-".
-            $vectorfecha[0]." ".substr($vectorfecha[2],3,5);
-            echo "<hr>";
-            if($rol == 'peluquero')
-            {
-              echo "<p><b>Usuario:</b> ". $fila['username']. "</p>";
-            }
-            echo "<p><b>Fecha:</b> " . $fechacorrecta. "</p>";
-            echo "<p><b>Servicio:</b> " . $fila['servicio'] . "</p>";
-            if($rol == 'registrado')
-            {
-              echo "<p><b>Peluquero:</b> " . $fila['peluquero'] . "</p>";
-            }
-            echo "<form method='POST' action='confirmar-anular-cita-previa.php'>
-            <input type='hidden' value='" . $fila['fecha'] . "' name='fecha'/>
-            <input type='submit' value='Anular Cita'/>
-            </form>";
-            echo "<hr>";         
+            echo "<p><b>Peluquero:</b> " . $fila['peluquero'] . "</p>";
           }
+                      
+          echo "<form method='POST' action='confirmar-anular-cita-previa.php'>
+          <input type='hidden' value='" . $fila['fecha'] . "' name='fecha'/>
+          <input type='submit' value='Anular Cita'/>
+          </form>";
+          echo "<hr>";         
         }
       }
     }
@@ -121,11 +126,12 @@ if(!(empty($usuario) && empty($passwd)))
 } 
 else
 {
-  echo "<p><button><a href='login.php'>Inicie sesion primero</a></button></p>";
+  echo "<p>No se pueden visualizar citas ya que no has iniciado sesión.</p>
+        <p><button><a href='login.php'>Inicia sesión</a></button></p>";
 }
 ?>
 <?php
-  include('footer.php');
+  include('common/footer.php');
 ?>
 </body>
 </html>

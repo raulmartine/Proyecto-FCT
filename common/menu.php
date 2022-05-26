@@ -8,7 +8,7 @@
   <?php
     if (!(empty($_SESSION['rol'])))
     {
-      if (!($_SESSION['rol'] == 'peluquero') || !($_SESSION['rol'] == 'admin'))
+      if (!($_SESSION['rol'] == 'peluquero' || $_SESSION['rol'] == 'admin'))
       {
   ?>
       <li><a href='cita-previa.php'>Cita Previa</a></li>
