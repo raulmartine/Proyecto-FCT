@@ -4,6 +4,8 @@
   <meta charset="uft-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ver Citas</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 <?php
@@ -46,17 +48,22 @@ if(!(empty($usuario) && empty($passwd)))
     {
       if($rol == 'peluquero')
       {
-        $sql = "SELECT * FROM $tablaCitas WHERE peluquero='$usuario' AND fecha LIKE '$fecha%' ORDER BY fecha;";
+        $sql= "SELECT citas.username, citas.fecha, serv.nombre, citas.peluquero
+        FROM $tablaCitas as citas JOIN servicios as serv ON citas.servicio = serv.codigo
+        WHERE peluquero='$usuario' AND fecha LIKE '$fecha%' ORDER BY fecha;";
       }
       else if ($rol == 'registrado')
       {
-        $sql = "SELECT * FROM $tablaCitas WHERE username='$usuario' AND fecha LIKE '$fecha%' ORDER BY fecha;";
+        $sql= "SELECT citas.username, citas.fecha, serv.nombre, citas.peluquero
+        FROM $tablaCitas as citas JOIN servicios as serv ON citas.servicio = serv.codigo
+        WHERE username='$usuario' AND fecha LIKE '$fecha%' ORDER BY fecha;";
       }
       else
       {
-        $sql = "SELECT * FROM $tablaCitas WHERE fecha LIKE '$fecha%' ORDER BY fecha;";
+        $sql= "SELECT citas.username, citas.fecha, serv.nombre, citas.peluquero
+        FROM $tablaCitas as citas JOIN servicios as serv ON citas.servicio = serv.codigo
+        WHERE fecha LIKE '$fecha%' ORDER BY fecha;";
       }
-
       $resultadoSelect = mysqli_query($conexion, $sql);
       if(!$resultadoSelect)
       {
@@ -65,24 +72,30 @@ if(!(empty($usuario) && empty($passwd)))
       else
       {
         $diaAnterior = date('Y-m-d', strtotime('-1 day', strtotime($fecha)));
-        echo "<form method='POST' action='ver-citas.php'>
+        echo "<div class='forms'>";
+        echo "<form method='POST' action='ver-citas.php' class='formDiaAnterior'>
         <input type='hidden' name='fechaActualizar' value = ".$diaAnterior."> 
         <button type='submit'>Día Anterior</button>
         </form>";
         
-        echo "<form method='POST' action='ver-citas.php'>
-        <input type='date' name='fechaActualizar'> 
+        echo "<form method='POST' action='ver-citas.php' class='formSeleccionarDia'>
+        <input type='date' name='fechaActualizar' value =" . $fecha . "> 
         <button type='submit'>Seleccionar Día</button>
         </form>";
 
         
         $diaPosterior = date('Y-m-d', strtotime('+1 days', strtotime($fecha)));
-        echo "<form method='POST' action='ver-citas.php'>
+        echo "<form method='POST' action='ver-citas.php' class='formDiaPosterior'>
         <input type='hidden' name='fechaActualizar' value = ".$diaPosterior.">
         <button type='submit'>Día Posterior</button>
         </form>";
+        echo "</div>";
 
-        echo "<p>Se están visualizando las citas previa del día: ".$fecha."</p>";
+
+        $vectorfecha=explode("-",$fecha);
+        $fechacorrecta=substr($vectorfecha[2],0,2)."-".$vectorfecha[1]."-".
+        $vectorfecha[0]." ".substr($vectorfecha[2],3,5);
+        echo "<p>Se están visualizando las citas previas del día: ".$fechacorrecta."</p>";
         
         $sqlComprobarFila = $sql;
         $resultadoComprobarFila = mysqli_query($conexion, $sqlComprobarFila);
@@ -100,20 +113,22 @@ if(!(empty($usuario) && empty($passwd)))
           $vectorfecha=explode("-",$fila['fecha']);
           // Reconstruimos la cadena: "día-mes-año hora:minutos:segundos"
           $fechacorrecta=substr($vectorfecha[2],0,2)."-".$vectorfecha[1]."-".
-          $vectorfecha[0]." ".substr($vectorfecha[2],3,5);
+          $vectorfecha[0];
+          $hora=substr($vectorfecha[2],3,5);
           echo "<hr>";
           if($rol == 'peluquero' || $rol == 'admin')
           {
-            echo "<p><b>Usuario:</b> ". $fila['username']. "</p>";
+            echo "<p><b>Usuario:</b> ". $fila['username'] . "</p>";
           }
-          echo "<p><b>Fecha:</b> " . $fechacorrecta. "</p>";
-          echo "<p><b>Servicio:</b> " . $fila['servicio'] . "</p>";
+          echo "<p><b>Fecha:</b> " . $fechacorrecta . "</p>";
+          echo "<p><b>Hora:</b> " . $hora . "</p>";
+          echo "<p><b>Servicio:</b> " . $fila['nombre'] . "</p>";
           if($rol == 'registrado' || $rol == 'admin')
           {
             echo "<p><b>Peluquero:</b> " . $fila['peluquero'] . "</p>";
           }
                       
-          echo "<form method='POST' action='confirmar-anular-cita-previa.php'>
+          echo "<form method='POST' action='confirmar-anular-cita-previa.php' class='formAnular'>
           <input type='hidden' value='" . $fila['fecha'] . "' name='fecha'/>
           <input type='submit' value='Anular Cita'/>
           </form>";

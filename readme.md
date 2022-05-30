@@ -333,3 +333,43 @@ citas creadas en la fecha seleccionada.
   ver-citas.php
   readme.md
 ```
+
+# Version 7.0
+
+## Aplicar CSS al proyecto y últimos cambios de funcionalidad
+
+Se ha implementado css a todo el proyecto.
+
+También se ha implementado unos últimos cambios de funcionamiento como
+redirrecionamiento de páginas, no permita realizar citas con una hora ya pasada.
+
+### Ficheros añadidos
+
+``` code
+/
+  css/
+    styles.css
+  images/
+    imagen.jpg
+    instagram_icon.png
+    telf_icon.png
+```
+
+### Ficheros modificados
+
+``` code
+/
+  common/
+    footer.php
+    menu.php
+  cita-previa.php
+  comprobar-login-usuario.php
+  confirmar-anular-cita-previa.php
+  confirmar-registrar-cita-previa.php
+  confirmar-registrar-usuario.php
+  index.php
+  login.php
+  registrar.php
+  ver-citas.php
+  readme.md
+```

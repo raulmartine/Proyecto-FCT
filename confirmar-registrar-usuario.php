@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cita Previa</title>
+  <title>Confirmar Registrar Usuario</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 <?php
@@ -64,7 +66,7 @@ if(!(empty($_POST['username']) && empty($_POST['passwd'])))
 					$_SESSION['passwd'] = $_POST['passwd'];
           $_SESSION['rol'] = $rol;
           mysqli_close($conector);
-          header('Location: index.php');
+          header('Location: cita-previa.php');
         }
       }
     }

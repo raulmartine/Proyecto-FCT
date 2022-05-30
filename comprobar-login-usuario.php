@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cita Previa</title>
+  <title>Comprobar Login</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 <?php
@@ -39,8 +41,8 @@ if(!(empty($_POST['username']) && empty($_POST['passwd'])))
 				$numeroregistros = mysqli_num_rows($resultado);
 				if($numeroregistros<1)
         { // Si no se encontró un usuario con esa clave.
-					echo "<p>ERROR: No existe un usuario con ese username o clave incorrecta.</p>
-					<button><a href='login.php'>Volver a intentarlo</a></button>";
+					echo "<p>No existe un usuario con ese username o clave incorrecta.</p>
+					<button><a href='login.php'>Volver a Iniciar Sesión</a></button>";
 				}
 				else
         {
@@ -55,17 +57,19 @@ if(!(empty($_POST['username']) && empty($_POST['passwd'])))
 						else if($fila['rol'] == 'peluquero')
 						{
 							$_SESSION['rol'] = "peluquero";
+							header('Location: ver-citas.php');
 						}
 						else if ($fila['rol'] == 'registrado')
 						{
 							$_SESSION['rol'] = "registrado";
+							header('Location: cita-previa.php');
 						}
 						else
 						{
-							$_SESSION['rol'] = "anonimo";
+							$_SESSION['rol'] = "anonimo";							
 						}
+						header('Location: index.php');
 					}
-          header('location: index.php');
 				}
       }	
 		}

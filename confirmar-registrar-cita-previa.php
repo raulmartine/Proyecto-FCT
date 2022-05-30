@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cita Previa</title>
+  <title>Confirmar Registrar Cita Previa</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 <?php
@@ -21,6 +23,16 @@ if(!(empty($_SESSION['username']) && empty($_SESSION['passwd']) && empty($_SESSI
     $fechaCorrecta = $fecha . " ". $hora .":00";
     $servicio = $_POST['servicio'];
     $peluquero = $_POST['peluquero'];
+    if($peluquero == 'peluquero1')
+    {
+      $peluqueroTexto = 'Angel';
+    }
+    else
+    {
+      $peluqueroTexto = 'Vanesa';
+    }
+    $fechaTexto=explode("-",$fecha);
+    $fechaTexto=substr($fecha,8,12)."-".substr($fecha,5,2)."-".substr($fecha,0,4);
 
     $conector = mysqli_connect($host,$user,$password);
 	  if (! $conector)
@@ -54,11 +66,20 @@ if(!(empty($_SESSION['username']) && empty($_SESSION['passwd']) && empty($_SESSI
           {
             echo "<p>Se ha creado la cita previa.</p>";
             mysqli_close($conector);
+            header('location: ver-citas.php');
           }
         }
         else
         {
-          echo "<p>ERROR: La cita previa con hora: ".$fechaCorrecta." y peluquero: ".$peluquero." ya están escogidas.</p>";
+          echo "<p>ERROR: La cita previa con fecha: " . $fechaTexto . ", hora: " . $hora . " y peluquero: " . $peluqueroTexto . " ya están escogidas.</p>
+                <p>Seleccione otra fecha, hora o peluquero.</p>
+                <form action='cita-previa.php'>
+                <input type='hidden' name='fecha' value = ".$fecha.">
+                <input type='hidden' name='hora' value = ".$hora.">
+                <input type='hidden' name='servicio' value = ".$servicio.">
+                <input type='hidden' name='peluquero' value = ".$peluquero.">
+                <button type='submit'>Volver a Realizar la Cita Previa</button>
+                </form>";
         }
       }
     }

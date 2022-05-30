@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cita Previa</title>
+  <title>Confirmar Anular Cita</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 <?php
@@ -44,6 +46,7 @@ if (!(empty($_SESSION['username']) && empty($_SESSION['passwd']) &&
 				else
         {
 				 	echo "<p>Cita previa anulada</p>";
+					header('location: ver-citas.php');
 				}
 			}	
 			mysqli_close($conector);

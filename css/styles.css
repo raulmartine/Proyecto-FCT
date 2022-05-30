@@ -1,0 +1,207 @@
+/*Estilos comunes*/
+
+/*Vesper Libre Serif*/
+@font-face {
+  font-family: 'dmsans';
+  src:  url('fonts/DMsans-Regular.ttf') format('ttf'),
+        url('fonts/DMsans-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+html
+{
+  margin: 0;
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  text-align: justify;
+  /* display: grid;
+  grid-template-rows: auto 1fr auto; */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header, footer{ 
+  background-color: black;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+header ul{
+  font-size: 0.9rem;
+}
+
+footer{
+  bottom: 0;
+  height: 50vh;
+  text-align: center;
+  padding: 1em 0 2em 0;
+  padding-top: 0;
+  margin-top: 33px;
+  margin-bottom: 0;
+  
+}
+
+ul{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+}
+
+ul a{
+  list-style: none;
+  padding: 3%;
+}
+
+ul a,
+ul a:link,
+ul a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+ul a:first-child{
+  position: relative;
+  bottom: 0;
+}
+
+.favicon{
+  background-color: white;
+  margin: 0;
+  margin-left: 10px;
+  width: 40px;
+  border-radius: 10px;
+  z-index: 0;
+}
+
+h1, h2, h3{
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 10px;
+  text-align: center;
+}
+
+img{
+  width: 70%;
+  margin: 2vh;
+}
+
+img, button{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.icon{
+  position: relative;
+  top: 1vh;
+  right: 1vh;
+  margin: 0;
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+}
+
+p{
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 10px;
+}
+
+p ~ ul{
+  text-align: center;
+  list-style: none;
+
+}
+
+footer h2{
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+/*index.php*/
+.iframe{
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+iframe{
+  min-width: 100%;
+  min-height: 10vh;
+}
+
+.enlace_Insta{
+  color: lightblue;
+}
+
+footer p:last-child{
+  padding-bottom: 2vh;
+  margin-bottom: 0;
+}
+
+/*ver-citas.php*/
+.forms, .formAnular{
+  margin-top: 2vh;
+  text-align: center;
+}
+
+.forms{
+  height: auto;
+}
+
+.formDiaAnterior, .formDiaPosterior, .formSeleccionarDia{
+  position: relative;
+  display: inline-block;
+}
+
+.formAnular{
+  margin: auto;
+}
+
+@media screen and (min-width : 594px) {
+  
+  div{
+    width: 100%;
+  }
+  iframe{
+    height: 100vh;
+    width: 80%;
+  }
+}
+
+
+@media screen and (min-width : 950px) {
+  
+  .ubicacion
+  {
+    text-align: center;
+  }
+  .iframe{
+    height: 50vh;
+    width: 40%;
+    margin: auto;
+  }
+
+  header ul{
+    font-size: 1.2rem;
+  }
+
+  .favicon{
+    width: 70px;
+  }
+}
