@@ -99,9 +99,12 @@
   let dateElement = document.getElementById("fecha");
   let fecha = dateElement.value;
   var date = new Date();
+  let numeroDia = new Date(dateElement.value).getDay()
 
   dateElement.addEventListener('change', (event) =>{
-    let numeroDia = new Date(dateElement.value).getDay();
+    numeroDia = new Date(dateElement.value).getDay();
+    console.log(numeroDia)
+    console.log(new Date(dateElement.value))
     var mes = date.getMonth()+1;
     var dia = date.getDate();
     var anyo = date.getFullYear();
@@ -115,7 +118,7 @@
       if(numeroDia === 0){
         alert("No se pueden hacer citas el domingo");
       }
-      else{
+      else if (numeroDia === 1){
         alert("No se pueden hacer citas el lunes");      
       }
       var dateCorregido = anyo + '-' + mes + '-' + dia;

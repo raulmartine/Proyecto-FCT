@@ -373,3 +373,30 @@ redirrecionamiento de páginas, no permita realizar citas con una hora ya pasada
   ver-citas.php
   readme.md
 ```
+
+# Version 7.1
+
+## Últimos cambios de funcionalidad
+
+Se han arreglado los últimos bugs de funcionamiento como que cambie la sesión
+cuando el administrador registra usuarios, redireccionamiento y bugs al querer
+realizar citas el domingo o el lunes.
+
+### Ficheros añadidos
+
+``` code
+/
+
+```
+
+### Ficheros modificados
+
+``` code
+/
+  common/
+    menu.php
+  cita-previa.php
+  comprobar-login-usuario.php
+  confirmar-registrar-usuario.php
+  readme.md
+```

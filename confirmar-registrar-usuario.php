@@ -57,20 +57,25 @@ if(!(empty($_POST['username']) && empty($_POST['passwd'])))
         $insert = mysqli_query($conexion, $sql);
 			  if(!$insert)
         {
-				  echo "<p>ERROR: No se ha podido crear el usuario.</p>";
+				  echo "<p>ERROR: No se ha podido crear el usuario porque ya está registrado.</p>
+                <p><button><a href=".'registrar.php'.">Volver a Registrarse</a></button></p>";
 			  }
 			  else
         {
           echo "<p>Se ha creado el usuario.</p>";
-          $_SESSION['username'] = $_POST['username'];
-					$_SESSION['passwd'] = $_POST['passwd'];
-          $_SESSION['rol'] = $rol;
+          if (!$_SESSION['rol'] = 'admin')
+          {
+            $_SESSION['username'] = $_POST['username'];
+					  $_SESSION['passwd'] = $_POST['passwd'];
+            $_SESSION['rol'] = $rol;
+            mysqli_close($conector);
+            header('Location: cita-previa.php');   
+          }
           mysqli_close($conector);
-          header('Location: cita-previa.php');
+          header('Location: registrar.php');   
         }
       }
     }
-    echo "<p><button><a href=".'index.php'.">Volver a Inicio</a></button></p>";
   }
 }
 else if (!($_SESSION['rol']=='registrado' || $_SESSION['rol']=='peluquero'))

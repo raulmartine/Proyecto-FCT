@@ -67,7 +67,17 @@ if(!(empty($_POST['username']) && empty($_POST['passwd'])))
 						else
 						{
 							$_SESSION['rol'] = "anonimo";							
-						}
+						}						
+					}
+					if($_SESSION['rol'] == 'peluquero')
+					{
+						header('Location: ver-citas.php');
+					}
+					else if($_SESSION['rol'] == 'registrado')
+					{
+						header('Location: cita-previa.php');
+					}
+					else{
 						header('Location: index.php');
 					}
 				}

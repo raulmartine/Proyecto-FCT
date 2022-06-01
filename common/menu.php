@@ -32,7 +32,7 @@
       if($_SESSION['rol'] == 'admin')
       {
   ?>
-    <a href="login.php">Registrar Usuarios</a>
+    <a href="registrar.php">Registrar Usuarios</a>
   <?php
       }
   ?>
